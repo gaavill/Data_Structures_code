@@ -1,0 +1,18 @@
+# Visual Studio
+.vs/
+Debug/
+Release/
+x64/
+x86/
+
+*.obj
+*.exe
+*.ilk
+*.pdb
+*.idb
+*.ipch
+*.VC.db
+*.user
+
+# 临时文件
+*.log

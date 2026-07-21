@@ -132,6 +132,7 @@
     <ClCompile Include="Circle_Link.cpp" />
     <ClCompile Include="Double_List.cpp" />
     <ClCompile Include="Link_List_Problem.cpp" />
+    <ClCompile Include="Link_Queue.cpp" />
     <ClCompile Include="Link_Stack.cpp" />
     <ClCompile Include="Seq_Stack.cpp" />
   </ItemGroup>
@@ -139,6 +140,7 @@
     <ClInclude Include="Circle_Link.h" />
     <ClInclude Include="Double_List.h" />
     <ClInclude Include="Dynamic.h" />
+    <ClInclude Include="Link_Queue.h" />
     <ClInclude Include="Link_Stack.h" />
     <ClInclude Include="LIST.h" />
     <ClInclude Include="Seq_Stack.h" />

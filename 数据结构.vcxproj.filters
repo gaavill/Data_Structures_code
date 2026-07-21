@@ -36,6 +36,9 @@
     <ClCompile Include="Link_Stack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Link_Queue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LIST.h">
@@ -54,6 +57,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Link_Stack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Link_Queue.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

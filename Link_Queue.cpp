@@ -136,17 +136,17 @@ void Print_LQ(Link_Queue* plq)
 
 
 //text
-int main()
-{
-	Link_Queue head;
-	Init_LQ(&head);
-	for (int i = 0; i < 10; i++)
-	{
-		Push_LQ(&head, i);
-	}
-	Print_LQ(&head);
-	printf("%d\n",Front_LQ(&head));
-	printf("%d\n", Size_LQ(&head));
-	Destroy_LQ(&head);
-	return 0;
-}
+//int main()
+//{
+//	Link_Queue head;
+//	Init_LQ(&head);
+//	for (int i = 0; i < 10; i++)
+//	{
+//		Push_LQ(&head, i);
+//	}
+//	Print_LQ(&head);
+//	printf("%d\n",Front_LQ(&head));
+//	printf("%d\n", Size_LQ(&head));
+//	Destroy_LQ(&head);
+//	return 0;
+//}

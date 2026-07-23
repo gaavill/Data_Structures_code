@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Circle_Queue.cpp" />
     <ClCompile Include="Dynamic.cpp" />
     <ClCompile Include="Link.cpp" />
     <ClCompile Include="Circle_Link.cpp" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle_Link.h" />
+    <ClInclude Include="Circle_Queue.h" />
     <ClInclude Include="Double_List.h" />
     <ClInclude Include="Dynamic.h" />
     <ClInclude Include="Link_Queue.h" />

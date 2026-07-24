@@ -113,7 +113,7 @@ void Print_CQ(Circle_Queue* pcq)
 
 
 
-//text
+//test
 //int main()
 //{
 //	Circle_Queue s;
@@ -140,3 +140,4 @@ void Print_CQ(Circle_Queue* pcq)
 //	Destroy_CQ(&s);
 //	return 0;
 //}
+

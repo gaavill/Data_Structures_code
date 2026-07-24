@@ -128,7 +128,7 @@ void Print_SS(Seq_Stack ss)
 }
 
 
-//text
+//test
 //int main()
 //{
 //	Seq_Stack stack;

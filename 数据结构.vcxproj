@@ -136,6 +136,7 @@
     <ClCompile Include="Link_Queue.cpp" />
     <ClCompile Include="Link_Stack.cpp" />
     <ClCompile Include="Seq_Stack.cpp" />
+    <ClCompile Include="Tow_Stack_Queue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle_Link.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Link_Stack.h" />
     <ClInclude Include="LIST.h" />
     <ClInclude Include="Seq_Stack.h" />
+    <ClInclude Include="Tow_Stack_Queue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

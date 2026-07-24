@@ -135,7 +135,7 @@ void Print_LQ(Link_Queue* plq)
 
 
 
-//text
+//test
 //int main()
 //{
 //	Link_Queue head;

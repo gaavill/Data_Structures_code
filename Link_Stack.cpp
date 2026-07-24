@@ -104,7 +104,7 @@ void Print_LS(LSNode* pls)
 }
 
 
-//text
+//test
 //int main()
 //{
 //	LSNode s;

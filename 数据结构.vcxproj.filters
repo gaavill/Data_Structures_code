@@ -42,6 +42,9 @@
     <ClCompile Include="Circle_Queue.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Tow_Stack_Queue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LIST.h">
@@ -66,6 +69,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Circle_Queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Tow_Stack_Queue.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

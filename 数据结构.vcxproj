@@ -129,7 +129,9 @@
   <ItemGroup>
     <ClCompile Include="Circle_Queue.cpp" />
     <ClCompile Include="Dynamic.cpp" />
-    <ClCompile Include="Link.cpp" />
+    <ClCompile Include="Hash_Map.cpp" />
+    <ClCompile Include="Hash_Map_Pluscpp.cpp" />
+    <ClCompile Include="LIST.cpp" />
     <ClCompile Include="Circle_Link.cpp" />
     <ClCompile Include="Double_List.cpp" />
     <ClCompile Include="Link_List_Problem.cpp" />
@@ -143,6 +145,8 @@
     <ClInclude Include="Circle_Queue.h" />
     <ClInclude Include="Double_List.h" />
     <ClInclude Include="Dynamic.h" />
+    <ClInclude Include="Hash_Map.h" />
+    <ClInclude Include="Hash_Map_Plus.h" />
     <ClInclude Include="Link_Queue.h" />
     <ClInclude Include="Link_Stack.h" />
     <ClInclude Include="LIST.h" />

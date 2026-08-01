@@ -184,21 +184,21 @@ void Destroy_Hash_No_head(HashTable_No_head* pht)
 	}
 }
 
-int main()
-{
-	int arr[] = { 12,67,56,16,25,37,22,29,15,47,48,34 };
-
-	HashTable_No_head s;
-	Init_HashTable_No_head(&s);
-
-	for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
-	{
-		Insert_HashTable_No_head(&s, arr[i]);
-	}
-
-	Print_HashTable_No_head(&s);
-
-	Destroy_Hash_No_head(&s);
-
-	return 0;
-}
+//int main()
+//{
+//	int arr[] = { 12,67,56,16,25,37,22,29,15,47,48,34 };
+//
+//	HashTable_No_head s;
+//	Init_HashTable_No_head(&s);
+//
+//	for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
+//	{
+//		Insert_HashTable_No_head(&s, arr[i]);
+//	}
+//
+//	Print_HashTable_No_head(&s);
+//
+//	Destroy_Hash_No_head(&s);
+//
+//	return 0;
+//}

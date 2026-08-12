@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BF_&amp;_Kmp.cpp" />
     <ClCompile Include="Circle_Queue.cpp" />
     <ClCompile Include="Dynamic.cpp" />
     <ClCompile Include="Hash_Map.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="Dynamic.h" />
     <ClInclude Include="Hash_Map.h" />
     <ClInclude Include="Hash_Map_Plus.h" />
+    <ClInclude Include="BF_&amp;_Kmp.h" />
     <ClInclude Include="Link_Queue.h" />
     <ClInclude Include="Link_Stack.h" />
     <ClInclude Include="LIST.h" />

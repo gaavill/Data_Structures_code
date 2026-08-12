@@ -657,17 +657,17 @@ void Three_Num_Get_Mid(int* arr, int left, int right)
 /************************************************************************************/
 
 //test
-int main()
-{
-	int arr[11] = { -18,97,58,91,72,-59,84,71,-95,71,128 };
-	//Merge_Sort(arr,0,10);
-	Quick_Sort_2(arr,11);
-	int index = BinarySearch(arr, 11, 71);
-	Print(arr, 11);
-	printf("%d\n",index);
-
-
-
-	return 0;
-}
+//int main()
+//{
+//	int arr[11] = { -18,97,58,91,72,-59,84,71,-95,71,128 };
+//	//Merge_Sort(arr,0,10);
+//	Quick_Sort_2(arr,11);
+//	int index = BinarySearch(arr, 11, 71);
+//	Print(arr, 11);
+//	printf("%d\n",index);
+//
+//
+//
+//	return 0;
+//}
 

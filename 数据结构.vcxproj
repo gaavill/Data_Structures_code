@@ -128,11 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BF_&amp;_Kmp.cpp" />
+    <ClCompile Include="Binary_Tree.cpp" />
     <ClCompile Include="Circle_Queue.cpp" />
     <ClCompile Include="Dynamic.cpp" />
     <ClCompile Include="Hash_Map.cpp" />
     <ClCompile Include="Hash_Map_Pluscpp.cpp" />
-    <ClCompile Include="LIST.cpp" />
+    <ClCompile Include="Link_List.cpp" />
     <ClCompile Include="Circle_Link.cpp" />
     <ClCompile Include="Double_List.cpp" />
     <ClCompile Include="Link_List_Problem.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="Tow_Stack_Queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Binary_Tree.h" />
     <ClInclude Include="Circle_Link.h" />
     <ClInclude Include="Circle_Queue.h" />
     <ClInclude Include="Double_List.h" />
@@ -152,7 +154,7 @@
     <ClInclude Include="BF_&amp;_Kmp.h" />
     <ClInclude Include="Link_Queue.h" />
     <ClInclude Include="Link_Stack.h" />
-    <ClInclude Include="LIST.h" />
+    <ClInclude Include="Link_List.h" />
     <ClInclude Include="Seq_Stack.h" />
     <ClInclude Include="Sort.h" />
     <ClInclude Include="Tow_Stack_Queue.h" />

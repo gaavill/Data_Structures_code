@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LIST.cpp">
+    <ClCompile Include="Link_List.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Dynamic.cpp">
@@ -57,9 +57,12 @@
     <ClCompile Include="BF_&amp;_Kmp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Binary_Tree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LIST.h">
+    <ClInclude Include="Link_List.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Dynamic.h">
@@ -96,6 +99,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="BF_&amp;_Kmp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Binary_Tree.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -224,13 +224,13 @@ int KMP_Search(const char* str, const char* sub, int index)
 }
 
 
-int main()
-{
-	char str[] = "abcdef";
-
-	int k = KMP_Search(str, "def",0);
-
-	printf("%d\n", k);
-	
-	return 0;
-}
+//int main()
+//{
+//	char str[] = "abcdef";
+//
+//	int k = KMP_Search(str, "def",0);
+//
+//	printf("%d\n", k);
+//	
+//	return 0;
+//}

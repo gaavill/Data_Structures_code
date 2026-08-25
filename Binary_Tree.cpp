@@ -23,39 +23,125 @@ BinaryTreeNode* BuyNode()
 }
 
 //搭建二叉树
-void Create_Binary_Tree(BinaryTree* Tree)
+
+//单个序列构造唯一二叉树(前序) 指针偏移+递归  默认节点元素不重复
+//思想：先构建一个前序的字符串str 将无效节点用 '#'表示
+//读取字符串 如果不是'#'就创建节点 再递归左子树 递归右子树
+//注意：必须让str中的字符逐个向后走 不能因为递归而回到上一次的位置
+BinaryTreeNode* Create_Binary_Tree_Pre(const char** str)
 {
-	assert(Tree);
+	//使用二级指针传参 让所有递归层都操作一个str 也可以使用char*&
+	//修改指针变量本身
+	ELEMTYPE ch = **str;
+	(*str)++;
+	
+	//如果为# 返回NULL 即递归出口
+	if (ch == '#')
+	{
+		return NULL;
+	}
+	//创建节点
+	BinaryTreeNode* root = BuyNode();
+	root->data = ch;
 
-	BinaryTreeNode* NewNode1 = BuyNode();
-	NewNode1->data = 'A';
-	Tree->root = NewNode1;
+	//递归构建左子树
+	root->left_child = Create_Binary_Tree_Pre(str);
+	//递归构建右子树
+	root->right_child = Create_Binary_Tree_Pre(str);
 
-	BinaryTreeNode* NewNode2 = BuyNode();
-	BinaryTreeNode* NewNode3 = BuyNode();
-	NewNode2->data = 'B';
-	NewNode1->left_child = NewNode2;
-	NewNode3->data = 'G';
-	NewNode1->right_child = NewNode3;
-
-	BinaryTreeNode* NewNode4 = BuyNode();
-	BinaryTreeNode* NewNode5 = BuyNode();
-	BinaryTreeNode* NewNode6 = BuyNode();
-	NewNode4->data = 'C';
-	NewNode5->data = 'D';
-	NewNode6->data = 'H';
-	NewNode2->left_child = NewNode4;
-	NewNode2->right_child = NewNode5;
-	NewNode3->left_child = NewNode6;
-
-	BinaryTreeNode* NewNode7 = BuyNode();
-	BinaryTreeNode* NewNode8 = BuyNode();
-	NewNode7->data = 'E';
-	NewNode8->data = 'F';
-	NewNode5->left_child = NewNode7;
-	NewNode5->right_child = NewNode8;
-
+	//把当前构造的节点返回给上一层
+	return root;
 }
+
+//两个序列构造唯一二叉树
+//两个序列构造唯一二叉树(前序 中序)
+//核心思想：前序确定根节点 中序确定左右分布  
+//前序负责找根 中序负责划分左右子树  
+//流程：先在前序中确定根 然后申请节点 再左右递归构造子树
+//找前序中确定的根节点在中序中的位置函数
+int Find_pos(const char* str, char ch)
+{
+	int pos = 0;
+	while (*str)
+	{
+		if (*str == ch)
+		{
+			return pos;
+		}
+		str++;
+		pos++;
+	}
+	return -1;
+}
+BinaryTreeNode* Create_Binary_Tree_Pre_In(const char* preorder,const char* inorder, int Size)
+{
+	//设置递归出口 即当前子树节点个数等于0就退出
+	if (Size <= 0)
+	{
+		return NULL;
+	}
+	//申请节点 前序的第一个元素就是根
+	BinaryTreeNode* root = BuyNode();
+	root->data = preorder[0];
+
+	//在中序中找前序中设置为根的节点在中序中的下标 方便计算指针偏移量
+	int pos = Find_pos(inorder, root->data);
+	if (pos == -1)
+	{
+		free(root);
+		return NULL;
+	 }
+	/* 在中序中确定根的位置 再回到前序中根据中序确定前序的左右子树
+	* 根在中序中左边就是左子树 右边就是右子树
+	前序：A | B C D E F | G H
+	      根   左子树    右子树
+	中序：C B E D F | A |  G H
+	      左子树     根   右子树	 
+	*/
+	//递归构造左子树
+	root->left_child = Create_Binary_Tree_Pre_In(
+		preorder +1, inorder, pos);
+	//递归构造右子树
+	root->right_child = Create_Binary_Tree_Pre_In(
+		preorder +pos +1, inorder +pos +1,Size -pos -1);
+
+	return root;
+}
+
+//两个序列构造唯一二叉树(中序 后序)
+//核心思想：利用后序来确定根节点 中序来确定左右子树
+//后序从后往前就是根节点的顺序
+BinaryTreeNode* Create_Binary_Tree_In_Post(const char* inorder, const char* postorder, int Size)
+{
+	if (Size <= 0)
+	{
+		return NULL;
+	}
+
+	BinaryTreeNode* root = BuyNode();
+	//后序的最后一个元素就是根
+	root->data = postorder[Size - 1];
+	//找到根节点在中序中的位置下标
+	int pos = Find_pos(inorder, root->data);
+
+	/*
+	中序：C B E D F | A |  G H
+	        左子树   根   右子树
+	后续：C E F D B | H G | A
+	      左子树    右子树  根
+	*/
+	//递归构造左子树
+	root->left_child = Create_Binary_Tree_In_Post(
+		inorder,postorder, pos);
+	//递归构造右子树
+	root->right_child = Create_Binary_Tree_In_Post(
+		inorder + pos + 1,postorder + pos, Size - pos - 1);
+
+	return root;
+}
+
+
+/******************************************************************************/
 
 //前序遍历(递归)
 void Pre_Order_Traversal(BinaryTreeNode* root)
@@ -251,7 +337,7 @@ void Post_Order_Traversal_No_Recursion1(BinaryTreeNode* root)
 //再从第二个栈中进行输出 就是 左->右->根 的顺序
 //注意：第一次遍历的时候需要 左先入栈 再右入栈 保证右子树先出
 //从而让第二个栈出栈顺序为 左->右->根
-void Post_Order_Traversal2(BinaryTreeNode* root)
+void Post_Order_Traversal_No_Recursion2(BinaryTreeNode* root)
 {
 	if (root == NULL)
 		return;
@@ -495,38 +581,116 @@ void Level_Order_Traversal_Reverse_S(BinaryTreeNode* root)
 	}
 	printf("\n");
 }
-//test
-int main()
+
+
+//统计二叉树节点数量
+int Total_Node_Binary_Tree(BinaryTreeNode* root)
 {
-	BinaryTree tree;
-	
-	Create_Binary_Tree(&tree);
-	printf("前序:");
-	Pre_Order_Traversal(tree.root);
-	printf("\n中序:");
-	In_Order_Traversal(tree.root);
-	printf("\n后序:");
-	Post_Order_Traversal(tree.root);
-	printf("\n\n\n前序:");
-	Pre_Order_Traversal_No_Recursion(tree.root);
-	printf("中序:");
-	In_Order_Traversal_No_Recursion(tree.root);
-	printf("后续1:");
-	Post_Order_Traversal_No_Recursion1(tree.root);
-	printf("后续2:");
-	Post_Order_Traversal2(tree.root);
-	printf("\n\n层序 左->右:");
-	Level_Order_Traversal_left_To_right(tree.root);
-	printf("层序 右->左:");
-	Level_Order_Traversal_right_To_left(tree.root);
-	printf("层序 正S:");
-	Level_Order_Traversal_S(tree.root);
-	printf("层序 倒S:");
-	Level_Order_Traversal_Reverse_S(tree.root);
-	printf("\n");
-
-
-
-	Destroy_Binary_Tree_1(tree.root);
-	return 0;
+	if (root == NULL)
+	{
+		return 0;
+	}
+	//左+右+根
+	return 1 + Total_Node_Binary_Tree(root->left_child) +
+		Total_Node_Binary_Tree(root->right_child);
 }
+
+//二叉树深度(高度) 根节点到最远叶子节点的节点数量
+int BinaryTree_Depth(BinaryTreeNode* root)
+{
+	if (root == NULL)
+	{
+		return 0;
+	}
+
+	int left_depth = BinaryTree_Depth(root->left_child);
+	int right_depth = BinaryTree_Depth(root->right_child);
+
+	return left_depth > right_depth ? left_depth + 1 : right_depth + 1;
+}
+
+//求叶子节点数量
+int Total_Leaf_Node(BinaryTreeNode* root)
+{
+	if (root == NULL)
+	{
+		return 0;
+	}
+
+	if (root->left_child == NULL && root->right_child == NULL)
+	{
+		return 1;
+	}
+
+	return Total_Leaf_Node(root->left_child) +
+		Total_Leaf_Node(root->right_child);
+}
+
+//查找节点
+BinaryTreeNode* Find_BinaryTree_Node(BinaryTreeNode* root, ELEMTYPE val)
+{
+	if (root == NULL)
+	{
+		return NULL;
+	}
+
+	if (root->data == val)
+	{
+		return root;
+	}
+
+	//查找左子树
+	BinaryTreeNode* left = Find_BinaryTree_Node(root->left_child, val);
+	if (left != NULL)
+	{
+		return left;
+	}
+	//查找右子树
+	return Find_BinaryTree_Node(root->right_child, val);
+}
+
+//test
+//int main()
+//{
+//	BinaryTree tree;
+//    const char* str = "ABC##DE##F##G#H##";
+//	//tree.root = Create_Binary_Tree_Pre(&str);
+//	const char* str_Pre = "ABCDEFGH";
+//	const char* str_In = "CBEDFAGH";
+//	const char* str_Post = "CEFDBHGA";
+//	//tree.root = Create_Binary_Tree_Pre_In(str_Pre,str_In,8);
+//	tree.root = Create_Binary_Tree_In_Post(str_In, str_Post, 8);
+//	printf("前序:");
+//	Pre_Order_Traversal(tree.root);
+//	printf("\n中序:");
+//	In_Order_Traversal(tree.root); 
+//	printf("\n后序:");
+//	Post_Order_Traversal(tree.root);
+//	printf("\n\n\n前序:");
+//	Pre_Order_Traversal_No_Recursion(tree.root);
+//	printf("中序:");
+//	In_Order_Traversal_No_Recursion(tree.root);
+//	printf("后续1:");
+//	Post_Order_Traversal_No_Recursion1(tree.root);
+//	printf("后续2:");
+//	Post_Order_Traversal_No_Recursion2(tree.root);
+//	printf("\n\n层序 左->右:");
+//	Level_Order_Traversal_left_To_right(tree.root);
+//	printf("层序 右->左:");
+//	Level_Order_Traversal_right_To_left(tree.root);
+//	printf("层序 正S:");
+//	Level_Order_Traversal_S(tree.root);
+//	printf("层序 倒S:");
+//	Level_Order_Traversal_Reverse_S(tree.root);
+//	printf("\n");
+//
+//	printf("%d\n", Total_Node_Binary_Tree(tree.root));
+//
+//	printf("%d\n", BinaryTree_Depth(tree.root));
+//	
+//	printf("%d\n", Total_Leaf_Node(tree.root));
+//	BinaryTreeNode* p = Find_BinaryTree_Node(tree.root, 'p');
+//	printf("%p\n", &p->data);
+//	Destroy_Binary_Tree_1(tree.root);
+//	return 0;
+//}

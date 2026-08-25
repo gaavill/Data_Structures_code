@@ -127,7 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AVL.cpp" />
     <ClCompile Include="BF_&amp;_Kmp.cpp" />
+    <ClCompile Include="Binary_Search_Tree.cpp" />
     <ClCompile Include="Binary_Tree.cpp" />
     <ClCompile Include="Circle_Queue.cpp" />
     <ClCompile Include="Dynamic.cpp" />
@@ -144,6 +146,8 @@
     <ClCompile Include="Tow_Stack_Queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AVL.h" />
+    <ClInclude Include="Binary_Search_Tree.h" />
     <ClInclude Include="Binary_Tree.h" />
     <ClInclude Include="Circle_Link.h" />
     <ClInclude Include="Circle_Queue.h" />

@@ -29,8 +29,16 @@ typedef struct BinaryTreeNode_T
 };
 
 
-//搭建二叉树
-void Create_Binary_Tree(BinaryTree* root);
+//二叉树创建 前序+唯一字符串
+BinaryTreeNode* Create_Binary_Tree_Pre(const char** str);
+
+//二叉树创建 前序+中序 递归
+BinaryTreeNode* Create_Binary_Tree_Pre_In(
+	const char* preorder, const char* inorder, int Size);
+
+//二叉树创建 中序+后序 递归
+BinaryTreeNode* Create_Binary_Tree_In_Post(
+	const char* inorder, const char* postorder, int Size);
 
 //前序遍历(递归)
 void Pre_Order_Traversal(BinaryTreeNode* root);
@@ -77,3 +85,18 @@ void Level_Order_Traversal_S(BinaryTreeNode* root);
 
 //层序遍历 倒S
 void Level_Order_Traversal_Reverse_S(BinaryTreeNode* root);
+
+//统计二叉树节点数量
+int Total_Node_Binary_Tree(BinaryTreeNode* root);
+
+//二叉树深度(高度) 根节点到最远叶子节点的节点数量
+int BinaryTree_Depth(BinaryTreeNode* root);
+
+//求叶子节点数量
+int Total_Leaf_Node(BinaryTreeNode* root);
+
+//查找节点
+BinaryTreeNode* Find_BinaryTree_Node(BinaryTreeNode* root,ELEMTYPE val);
+
+
+

@@ -656,12 +656,85 @@ void Three_Num_Get_Mid(int* arr, int left, int right)
 
 /************************************************************************************/
 
+
+
+
+/************************************************************************************/
+//堆排序
+//默认升序 需要用到 大顶堆(根节点 >= 子节点)
+//流程：构建大顶堆->将根与待排序列的最后一个元素交换->重新调整大顶堆
+//用数组存储完全二叉树：
+//root      left         right        parent
+// i        i*2+1        i*2+2        (i-1)/2
+//最后一个非叶子节点  (n/2)-1
+
+//构建大顶堆流程：
+//1.找到左右孩子的最大值->
+//2.和根进行比较 如果比根大就交换->
+//3.再向下调整 让父节点变为上一次被交换的孩子
+//注意：构建大顶堆需要从最后一个非叶子节点开始 (n/2)-1
+//原因：叶子节点默认符合大顶堆结构 需要从下往上逐层建立 
+//AdjustDown函数处理的节点需要其子树已经满足堆结构
+//说明：n 表示参与调整的节点范围   parent 表示开始调整的节点指针
+void AdjustDown(int* arr, int n, int parent)
+{
+	//1.找到当前较大的孩子
+	//先找到左孩子 右孩子就可以表示为arr[child+1]
+	int child = parent * 2 + 1;
+	while (child < n)
+	{
+		if (child + 1 < n && arr[child + 1] > arr[child])
+		{
+			child++;
+		}
+
+		//2.和根比较 如果比根大交换 根大则退出 已经是堆结构了
+		if (arr[parent] >= arr[child])
+		{
+			break;
+		}
+		//父子交换
+		int tmp = arr[child];
+		arr[child] = arr[parent];
+		arr[parent] = tmp;
+
+		//3.继续调整被交换下去的节点
+		parent = child;
+		child = parent * 2 + 1;
+	}
+}
+
+void Heap_Sort(int* arr, int len)
+{
+	//1.建立大顶堆 从最后一个非叶子节点开始向前建立 n/2-1
+	for (int i = len / 2 - 1; i >= 0; i--)
+	{
+		AdjustDown(arr, len, i);
+	}
+
+	for (int end = len - 1; end > 0; end--)
+	{
+		//2.将根与待排序序列最后一个值交换
+		//[0,end)为堆 [end,len]是已经排好的部分
+		int tmp = arr[0];
+		arr[0] = arr[end];
+		arr[end] = tmp;
+
+		//3.重新[0,end]为堆结构 修复被替换过的堆顶
+		AdjustDown(arr, end, 0);
+	}
+}
+
+
+
+
+
 //test
 //int main()
 //{
 //	int arr[11] = { -18,97,58,91,72,-59,84,71,-95,71,128 };
 //	//Merge_Sort(arr,0,10);
-//	Quick_Sort_2(arr,11);
+//	Heap_Sort(arr,11);
 //	int index = BinarySearch(arr, 11, 71);
 //	Print(arr, 11);
 //	printf("%d\n",index);

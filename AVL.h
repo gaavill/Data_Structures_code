@@ -60,6 +60,6 @@ AVL_Node* Search_AVL(AVL_Node* root, ELEMTYPE val);
 bool Empty_AVL(AVL_Node* root);
 
 //Ïú»Ù
-void Destroy_AVL(AVL_Node* root);
+void Destroy_AVL(AVL* tree);
 
 

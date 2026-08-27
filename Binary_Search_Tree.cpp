@@ -166,6 +166,41 @@ bool Insert_BST(BST* tree, ELEMTYPE val)
 	return true;
 }
 
+//插入递归版本
+BST_Node* Insert_BST_p(BST_Node* root,BST_Node*parent, ELEMTYPE val)
+{
+	//递归出口 也是插入位置
+	if (root == NULL)
+	{
+		BST_Node* newNode = (BST_Node*)malloc(sizeof(*newNode));
+		if (newNode == NULL)
+		{
+			perror("malloc");
+			exit(EXIT_FAILURE);
+		}
+		newNode->data = val;
+		newNode->left = NULL;
+		newNode->right = NULL;
+		newNode->parent = parent;
+
+		return newNode;
+	}
+
+	if (val < root->data)
+	{
+		root->left = Insert_BST_p(root->left,root, val);
+	}
+	else if (val > root->data)
+	{
+		root->right = Insert_BST_p(root->right,root, val);
+	}
+	else
+	{
+		return root;
+	}
+
+	return root;
+}
 //5.删除
 //删除的节点有两个分支
 //1.找到待删除节点 
@@ -233,6 +268,55 @@ bool Delete_BST(BST* tree, ELEMTYPE val)
 	return true;
 }
 
+//递归删除
+BST_Node* Delete_BST_p(BST_Node*root, ELEMTYPE val)
+{
+	//没找到
+	if (root == NULL)
+	{
+		return NULL;
+	}
+
+	//递归左子树查找
+	if (val < root->data)
+	{
+		root->left = Delete_BST_p(root->left, val);
+	}
+	else if (val > root->data)
+	{
+		//右子树查找
+		root->right = Delete_BST_p(root->right,val);
+	}
+	else //找到待删除节点
+	{
+		//没有左孩子
+		if (root->left == NULL)
+		{
+			BST_Node* right = root->right;//保存右孩子
+			free(root);
+			return right;
+		}
+		//没有右孩子
+		if (root->right == NULL)
+		{
+			BST_Node* left = root->left;
+			free(root);
+			return left;
+		}
+		//左右孩子都有  转换为删除直接前驱或者直接后继
+		BST_Node* successor = root->right;
+		while (successor->left != NULL)
+		{
+			successor = successor->left;
+		}
+		//将直接后继中的值赋值给删除节点
+		root->data = successor->data;
+		//去右子树中删除直接后继
+		root->right = Delete_BST_p(root->right, successor->data);
+	}
+
+	return root;//删除完成 返回根节点
+}
 
 //6.销毁
 void Destroy_BST(BST_Node* root)
@@ -313,7 +397,7 @@ BST_Node* Find_Predecessor(BST_Node* node)
 //	int arr[10] = { 12,8,46,82,9,3,64,3,5,74 };
 //	for (int i = 0; i < 10; i++)
 //	{
-//		Insert_BST(&tree, arr[i]);
+//		tree.root = Insert_BST_p(tree.root,NULL, arr[i]);
 //	}
 //	Delete_BST(&tree, 8);
 //	InOrderTraversal(tree.root);
@@ -322,6 +406,7 @@ BST_Node* Find_Predecessor(BST_Node* node)
 //	{
 //		printf("no_find\n");
 //	}
+//
 //	Destroy_BST(tree.root);
 //	return 0;
 //}
